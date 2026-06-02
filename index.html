@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chandrika S — Digital Marketing Strategist</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --gold: #D4900A;
+    --gold-deep: #A86800;
+    --gold-glow: #F5D28A;
+    --navy: #1A1A2E;
+    --charcoal: #2E2E3A;
+    --linen: #F7F4EF;
+    --sand: #C8B89A;
+    --sand-light: #EDE7DC;
+    --white: #ffffff;
+    --text-primary: #1A1A2E;
+    --text-muted: #6B6478;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--linen);
+    color: var(--text-primary);
+    font-size: 15px;
+    line-height: 1.65;
+    overflow-x: hidden;
+  }
+
+  .cursor-dot {
+    width: 8px; height: 8px;
+    background: var(--gold);
+    border-radius: 50%;
+    position: fixed;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    transition: transform 0.08s ease;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 20px 60px;
+    display: flex; align-items: center; justify-content: space-between;
+    background: rgba(247, 244, 239, 0.95);
+    border-bottom: 0.5px solid var(--sand);
+  }
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px; font-weight: 500;
+    letter-spacing: 0.02em; color: var(--navy); text-decoration: none;
+  }
+  .nav-logo span { color: var(--gold); }
+  .nav-links { display: flex; gap: 36px; list-style: none; }
+  .nav-links a {
+    font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--text-muted); text-decoration: none; font-weight: 500; transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--gold); }
+
+  /* HERO */
+  .hero { min-height: 100vh; display: grid; grid-template-columns: 1fr 1fr; }
+  .hero-left {
+    background: var(--navy);
+    padding: 140px 70px 80px;
+    display: flex; flex-direction: column; justify-content: center;
+  }
+  .hero-eyebrow {
+    font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 28px; font-weight: 500;
+  }
+  .hero-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(52px, 6vw, 86px); font-weight: 300; line-height: 1.05;
+    color: var(--white); margin-bottom: 6px;
+  }
+  .hero-name em { font-style: italic; color: var(--gold-glow); }
+  .hero-title-line { width: 48px; height: 1.5px; background: var(--gold); margin: 28px 0; }
+  .hero-desc {
+    font-size: 15px; line-height: 1.75;
+    color: rgba(247,244,239,0.72); max-width: 380px; margin-bottom: 48px;
+  }
+  .hero-cta-row { display: flex; gap: 16px; align-items: center; flex-wrap: wrap; }
+  .btn-primary {
+    display: inline-block; padding: 13px 28px; background: var(--gold); color: var(--navy);
+    font-size: 12px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase;
+    text-decoration: none; border: none; cursor: pointer; transition: background 0.2s, transform 0.15s;
+  }
+  .btn-primary:hover { background: var(--gold-deep); transform: translateY(-1px); }
+  .btn-ghost {
+    display: inline-block; padding: 12px 28px; border: 1px solid rgba(247,244,239,0.3);
+    color: rgba(247,244,239,0.7); font-size: 12px; font-weight: 500; letter-spacing: 0.08em;
+    text-transform: uppercase; text-decoration: none; cursor: pointer; transition: border-color 0.2s, color 0.2s;
+  }
+  .btn-ghost:hover { border-color: var(--gold); color: var(--gold); }
+  .hero-right {
+    background: var(--linen);
+    padding: 140px 70px 80px 90px;
+    display: flex; flex-direction: column; justify-content: center;
+  }
+  .hero-stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; margin-top: 40px; }
+  .stat-item { padding: 24px 0; border-top: 1px solid var(--sand); }
+  .stat-number {
+    font-family: 'Cormorant Garamond', serif; font-size: 44px;
+    font-weight: 300; color: var(--navy); line-height: 1; margin-bottom: 6px;
+  }
+  .stat-number span { color: var(--gold); font-size: 28px; }
+  .stat-label { font-size: 12px; letter-spacing: 0.06em; color: var(--text-muted); text-transform: uppercase; }
+  .hero-right-label { font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--sand); margin-bottom: 20px; }
+  .hero-right-bio {
+    font-family: 'Cormorant Garamond', serif; font-size: 26px;
+    font-weight: 300; line-height: 1.5; color: var(--navy); font-style: italic;
+  }
+  .hero-right-bio strong { font-style: normal; color: var(--gold-deep); font-weight: 500; }
+
+  /* SECTIONS */
+  .section { padding: 100px 60px; }
+  .section-inner { max-width: 1200px; margin: 0 auto; }
+  .section-header { margin-bottom: 64px; }
+  .section-label {
+    font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 16px; font-weight: 500;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .section-label::before { content: ''; width: 32px; height: 1px; background: var(--gold); display: inline-block; }
+  .section-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(34px, 4vw, 52px); font-weight: 300; line-height: 1.15; color: var(--navy); }
+  .section-title em { font-style: italic; color: var(--gold-deep); }
+
+  /* ACHIEVEMENTS */
+  .achievements-section { background: var(--navy); }
+  .achievements-section .section-title { color: var(--white); }
+  .achievements-section .section-label { color: var(--gold-glow); }
+  .achievements-section .section-label::before { background: var(--gold-glow); }
+  .achievements-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; border: 1px solid rgba(200,184,154,0.2); }
+  .achievement-card { padding: 40px 32px; border-right: 1px solid rgba(200,184,154,0.15); border-bottom: 1px solid rgba(200,184,154,0.15); transition: background 0.25s; }
+  .achievement-card:nth-child(4n) { border-right: none; }
+  .achievement-card:nth-child(n+5) { border-bottom: none; }
+  .achievement-card:hover { background: rgba(212,144,10,0.07); }
+  .achievement-icon { width: 36px; height: 36px; border: 1px solid var(--gold); display: flex; align-items: center; justify-content: center; margin-bottom: 20px; font-size: 16px; color: var(--gold); }
+  .achievement-num { font-family: 'Cormorant Garamond', serif; font-size: 42px; font-weight: 300; color: var(--gold-glow); line-height: 1; margin-bottom: 8px; }
+  .achievement-metric { font-size: 13px; color: rgba(247,244,239,0.55); line-height: 1.5; }
+  .achievement-metric strong { color: rgba(247,244,239,0.85); font-weight: 400; display: block; margin-bottom: 4px; }
+
+  /* SKILLS */
+  .skills-section { background: var(--white); }
+  .skills-two-col { display: grid; grid-template-columns: 1fr 2fr; gap: 80px; align-items: start; }
+  .skills-intro { font-size: 15px; color: var(--text-muted); line-height: 1.75; margin-top: 32px; }
+  .skills-categories { display: flex; flex-direction: column; gap: 40px; }
+  .skill-category-label {
+    font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--text-muted); margin-bottom: 16px; font-weight: 500;
+    padding-bottom: 10px; border-bottom: 1px solid var(--sand-light);
+  }
+  .skill-tags { display: flex; flex-wrap: wrap; gap: 10px; }
+  .skill-tag {
+    padding: 8px 16px; font-size: 13px; color: var(--navy); border: 0.5px solid var(--sand);
+    background: var(--linen); font-weight: 400; transition: all 0.2s; cursor: default; letter-spacing: 0.01em;
+  }
+  .skill-tag:hover { border-color: var(--gold); background: var(--white); color: var(--gold-deep); }
+  .skill-tag.highlight { background: var(--navy); color: var(--gold-glow); border-color: var(--navy); }
+
+  /* PROJECTS - CARD GRID */
+  .projects-section { background: var(--linen); }
+  .project-filters { display: flex; gap: 8px; margin-bottom: 48px; flex-wrap: wrap; }
+  .filter-btn {
+    padding: 8px 18px; font-size: 12px; letter-spacing: 0.07em; text-transform: uppercase;
+    border: 0.5px solid var(--sand); background: transparent; color: var(--text-muted);
+    cursor: pointer; transition: all 0.2s; font-family: 'DM Sans', sans-serif; font-weight: 500;
+  }
+  .filter-btn:hover, .filter-btn.active { background: var(--navy); border-color: var(--navy); color: var(--gold-glow); }
+  .projects-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; }
+  .project-card {
+    background: var(--white); padding: 36px 32px; position: relative; overflow: hidden;
+    transition: all 0.3s; display: flex; flex-direction: column; cursor: default;
+  }
+  .project-card::before {
+    content: ''; position: absolute; left: 0; top: 0; bottom: 0;
+    width: 3px; background: var(--sand); transition: background 0.25s;
+  }
+  .project-card:hover::before { background: var(--gold); }
+  .project-card:hover { transform: translateY(-3px); box-shadow: 0 12px 32px rgba(26,26,46,0.1); z-index: 1; }
+  .project-card.hidden { display: none; }
+  .project-logo-wrap {
+    width: 42px; height: 42px; border: 0.5px solid var(--sand); background: var(--linen);
+    display: flex; align-items: center; justify-content: center; margin-bottom: 18px; overflow: hidden;
+  }
+  .project-logo-wrap img { width: 32px; height: 32px; object-fit: contain; }
+  .project-logo-placeholder {
+    width: 32px; height: 32px; display: flex; align-items: center; justify-content: center;
+    font-family: 'Cormorant Garamond', serif; font-size: 16px; font-weight: 600; color: var(--navy); letter-spacing: 0.02em;
+  }
+  .project-industry { font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 12px; font-weight: 500; }
+  .project-name { font-family: 'Cormorant Garamond', serif; font-size: 24px; font-weight: 500; color: var(--navy); margin-bottom: 8px; line-height: 1.2; }
+  .project-role { font-size: 12px; color: var(--gold-deep); margin-bottom: 14px; font-weight: 500; letter-spacing: 0.04em; }
+  .project-overview { font-size: 13px; color: var(--text-muted); line-height: 1.65; margin-bottom: 20px; flex: 1; }
+  .project-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: auto; }
+  .project-tag { font-size: 11px; padding: 4px 10px; background: var(--linen); color: var(--text-muted); border: 0.5px solid var(--sand-light); letter-spacing: 0.03em; }
+
+  /* TOOLS - CATEGORISED */
+  .tools-section { background: var(--white); }
+  .tools-categories { display: flex; flex-direction: column; gap: 48px; }
+  .tool-category-label {
+    font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted);
+    font-weight: 500; padding-bottom: 12px; border-bottom: 1px solid var(--sand-light); margin-bottom: 16px;
+  }
+  .tools-pill-row { display: flex; flex-wrap: wrap; gap: 10px; }
+  .tool-pill {
+    padding: 9px 16px; font-size: 13px; font-weight: 400; color: var(--navy);
+    border: 0.5px solid var(--sand); background: var(--linen);
+    transition: all 0.2s; cursor: default; letter-spacing: 0.01em;
+    display: flex; align-items: center; gap: 7px;
+  }
+  .tool-pill:hover { background: var(--navy); color: var(--gold-glow); border-color: var(--navy); }
+  .tool-pill .tp-icon { font-size: 15px; }
+  .tool-pill.ai-pill { background: var(--navy); color: var(--gold-glow); border-color: var(--navy); }
+  .tool-pill.ai-pill:hover { background: var(--gold); color: var(--navy); border-color: var(--gold); }
+
+  /* CONTACT */
+  .contact-section { background: var(--charcoal); padding: 100px 60px; }
+  .contact-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+  .contact-left .section-title { color: var(--white); }
+  .contact-tagline { font-size: 15px; color: rgba(247,244,239,0.6); margin-top: 24px; line-height: 1.75; }
+  .contact-links { display: flex; flex-direction: column; gap: 16px; margin-top: 40px; }
+  .contact-link {
+    display: flex; align-items: center; gap: 16px; text-decoration: none;
+    color: rgba(247,244,239,0.7); font-size: 14px; transition: color 0.2s;
+    padding-bottom: 16px; border-bottom: 0.5px solid rgba(200,184,154,0.2);
+  }
+  .contact-link:hover { color: var(--gold-glow); }
+  .contact-link-icon {
+    width: 38px; height: 38px; border: 1px solid rgba(200,184,154,0.3);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px; color: var(--gold); flex-shrink: 0; font-weight: 600;
+  }
+
+  /* FOOTER */
+  footer { background: var(--navy); padding: 28px 60px; display: flex; align-items: center; justify-content: space-between; }
+  .footer-name { font-family: 'Cormorant Garamond', serif; font-size: 18px; font-weight: 400; color: rgba(247,244,239,0.5); }
+  .footer-copy { font-size: 11px; color: rgba(247,244,239,0.3); letter-spacing: 0.06em; }
+
+  /* ANIMATIONS */
+  .fade-in { opacity: 0; transform: translateY(24px); transition: opacity 0.65s ease, transform 0.65s ease; }
+  .fade-in.visible { opacity: 1; transform: translateY(0); }
+  .fade-delay-1 { transition-delay: 0.1s; }
+  .fade-delay-2 { transition-delay: 0.2s; }
+  .fade-delay-3 { transition-delay: 0.3s; }
+  .fade-delay-4 { transition-delay: 0.4s; }
+
+  /* RESPONSIVE */
+  @media (max-width: 1024px) {
+    .hero { grid-template-columns: 1fr; }
+    .hero-left { padding: 130px 40px 60px; min-height: 60vh; }
+    .hero-right { padding: 60px 40px; }
+    .achievements-grid { grid-template-columns: repeat(2, 1fr); }
+    .projects-grid { grid-template-columns: repeat(2, 1fr); }
+    .tools-section .section-inner { padding: 0; }
+    nav { padding: 16px 30px; }
+    .section { padding: 70px 30px; }
+    .skills-two-col { grid-template-columns: 1fr; }
+    .contact-inner { grid-template-columns: 1fr; }
+    footer { flex-direction: column; gap: 8px; text-align: center; padding: 24px 30px; }
+  }
+  @media (max-width: 640px) {
+    .achievements-grid { grid-template-columns: 1fr 1fr; }
+    .projects-grid { grid-template-columns: 1fr; }
+    .hero-stats-grid { grid-template-columns: 1fr 1fr; }
+    .nav-links { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="cursor-dot" id="cursor"></div>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">CS<span>.</span></a>
+  <ul class="nav-links">
+    <li><a href="#achievements">Results</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Work</a></li>
+    <li><a href="#tools">Tools</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <p class="hero-eyebrow fade-in">Digital Marketing Strategist · 8 Years</p>
+    <h1 class="hero-name fade-in fade-delay-1">Chandrika<br><em>Selvamani.</em></h1>
+    <div class="hero-title-line fade-in fade-delay-2"></div>
+    <p class="hero-desc fade-in fade-delay-2">I turn marketing data into revenue. Specialising in performance campaigns, automation, and growth strategy — across SaaS, real estate, fintech, healthcare, and education.</p>
+    <div class="hero-cta-row fade-in fade-delay-3">
+      <a href="https://www.linkedin.com/in/chandrikaselvamani/" target="_blank" class="btn-primary">Connect on LinkedIn</a>
+      <a href="#projects" class="btn-ghost">View Work</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <p class="hero-right-label">At a glance</p>
+    <p class="hero-right-bio fade-in">"I don't just run campaigns —<br><strong>I build systems that convert.</strong>"</p>
+    <div class="hero-stats-grid">
+      <div class="stat-item fade-in fade-delay-1"><div class="stat-number">8<span>+</span></div><div class="stat-label">Years experience</div></div>
+      <div class="stat-item fade-in fade-delay-2"><div class="stat-number">14<span>+</span></div><div class="stat-label">Brands scaled</div></div>
+      <div class="stat-item fade-in fade-delay-3"><div class="stat-number">4.3<span>×</span></div><div class="stat-label">ROAS achieved</div></div>
+      <div class="stat-item fade-in fade-delay-4"><div class="stat-number">185<span>%</span></div><div class="stat-label">Organic traffic growth</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ACHIEVEMENTS -->
+<section class="section achievements-section" id="achievements">
+  <div class="section-inner">
+    <div class="section-header">
+      <p class="section-label">Measurable impact</p>
+      <h2 class="section-title">Numbers that<br><em>tell the story.</em></h2>
+    </div>
+    <div class="achievements-grid">
+      <div class="achievement-card fade-in"><div class="achievement-icon">↓</div><div class="achievement-num">42%</div><div class="achievement-metric"><strong>Cost Per Lead Reduction</strong>Paid & organic optimisation driving higher-quality acquisition at lower cost.</div></div>
+      <div class="achievement-card fade-in fade-delay-1"><div class="achievement-icon">↑</div><div class="achievement-num">3.4×</div><div class="achievement-metric"><strong>Qualified Lead Growth</strong>Scaled from 120 to 410 qualified leads/month through strategic funnel redesign.</div></div>
+      <div class="achievement-card fade-in fade-delay-2"><div class="achievement-icon">%</div><div class="achievement-num">7.8%</div><div class="achievement-metric"><strong>Landing Page CVR</strong>Improved from 3.2% — a 144% lift through CRO and A/B testing.</div></div>
+      <div class="achievement-card fade-in fade-delay-3"><div class="achievement-icon">⚡</div><div class="achievement-num">5 min</div><div class="achievement-metric"><strong>Lead Response Time</strong>Reduced from 2 hours via automated routing — 35% more leads convert to meetings.</div></div>
+      <div class="achievement-card fade-in"><div class="achievement-icon">→</div><div class="achievement-num">4.3×</div><div class="achievement-metric"><strong>ROAS Uplift</strong>From 1.9× to 4.3× across Meta, Google, and LinkedIn — with 28% less wasted spend.</div></div>
+      <div class="achievement-card fade-in fade-delay-1"><div class="achievement-icon">↑</div><div class="achievement-num">185%</div><div class="achievement-metric"><strong>Organic Traffic Growth</strong>In 8 months. 15+ Page 1 keywords. Average rank moved from #38 to #11.</div></div>
+      <div class="achievement-card fade-in fade-delay-2"><div class="achievement-icon">◈</div><div class="achievement-num">60%</div><div class="achievement-metric"><strong>Manual Work Eliminated</strong>Through marketing automation — enabling teams to focus on strategy, not tasks.</div></div>
+      <div class="achievement-card fade-in fade-delay-3"><div class="achievement-icon">↓</div><div class="achievement-num">34%</div><div class="achievement-metric"><strong>Customer Acquisition Cost</strong>Reduced by making organic search the top source of marketing-qualified leads.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section class="section skills-section" id="skills">
+  <div class="section-inner">
+    <div class="skills-two-col">
+      <div>
+        <p class="section-label">Core capabilities</p>
+        <h2 class="section-title">Where I<br><em>create value.</em></h2>
+        <p class="skills-intro">From full-funnel strategy to hands-on execution — I combine analytical thinking with creative precision to deliver growth across every stage of the customer journey.</p>
+      </div>
+      <div class="skills-categories">
+        <div class="fade-in">
+          <p class="skill-category-label">Strategy & Growth</p>
+          <div class="skill-tags">
+            <span class="skill-tag highlight">Digital Marketing Strategy</span>
+            <span class="skill-tag highlight">Performance Marketing</span>
+            <span class="skill-tag">Growth Strategy</span>
+            <span class="skill-tag">Market Research</span>
+            <span class="skill-tag">Competitor Analysis</span>
+            <span class="skill-tag">Brand Marketing</span>
+          </div>
+        </div>
+        <div class="fade-in fade-delay-1">
+          <p class="skill-category-label">Paid Media & Campaigns</p>
+          <div class="skill-tags">
+            <span class="skill-tag highlight">Meta Ads (FB/IG)</span>
+            <span class="skill-tag highlight">Google Ads (SEM)</span>
+            <span class="skill-tag">LinkedIn Ads</span>
+            <span class="skill-tag">Media Buying</span>
+            <span class="skill-tag">Media Planning</span>
+            <span class="skill-tag">Campaign Management</span>
+            <span class="skill-tag">Budget Management</span>
+            <span class="skill-tag">A/B Testing</span>
+            <span class="skill-tag">Remarketing</span>
+          </div>
+        </div>
+        <div class="fade-in fade-delay-2">
+          <p class="skill-category-label">SEO · AEO · GEO</p>
+          <div class="skill-tags">
+            <span class="skill-tag highlight">SEO (On-page & Technical)</span>
+            <span class="skill-tag highlight">AEO — Answer Engine Optimisation</span>
+            <span class="skill-tag highlight">GEO — Generative Engine Optimisation</span>
+            <span class="skill-tag">SEO Off-page</span>
+            <span class="skill-tag">Keyword Research</span>
+            <span class="skill-tag">Content Strategy</span>
+            <span class="skill-tag">Content Writing</span>
+            <span class="skill-tag">Landing Page Optimisation</span>
+            <span class="skill-tag">Schema & Structured Data</span>
+          </div>
+        </div>
+        <div class="fade-in fade-delay-3">
+          <p class="skill-category-label">Automation, AI & Analytics</p>
+          <div class="skill-tags">
+            <span class="skill-tag highlight">Marketing Automation</span>
+            <span class="skill-tag highlight">Analytics & Data Analysis</span>
+            <span class="skill-tag highlight">AI-Powered Marketing</span>
+            <span class="skill-tag">GA4</span>
+            <span class="skill-tag">Google Tag Manager</span>
+            <span class="skill-tag">Email Marketing</span>
+            <span class="skill-tag">WhatsApp Marketing</span>
+            <span class="skill-tag">Reporting & Dashboards</span>
+            <span class="skill-tag">Lead Generation</span>
+            <span class="skill-tag">Social Media Strategy</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section class="section projects-section" id="projects">
+  <div class="section-inner">
+    <div class="section-header">
+      <p class="section-label">Professional work</p>
+      <h2 class="section-title">Brands I've<br><em>built growth for.</em></h2>
+    </div>
+    <div class="project-filters">
+      <button class="filter-btn active" data-filter="all">All</button>
+      <button class="filter-btn" data-filter="Real Estate">Real Estate</button>
+      <button class="filter-btn" data-filter="SaaS">SaaS</button>
+      <button class="filter-btn" data-filter="FinTech">FinTech</button>
+      <button class="filter-btn" data-filter="Healthcare">Healthcare</button>
+      <button class="filter-btn" data-filter="Education">Education</button>
+      <button class="filter-btn" data-filter="Agency">Agency</button>
+    </div>
+    <div class="projects-grid" id="projectsGrid">
+
+      <div class="project-card" data-industry="Real Estate">
+        <div class="project-logo-wrap">
+          <img src="https://logo.clearbit.com/propwise.ae" alt="Propwise" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="project-logo-placeholder" style="display:none">PW</div>
+        </div>
+        <p class="project-industry">Real Estate · SaaS · Dubai</p>
+        <h3 class="project-name">Propwise</h3>
+        <p class="project-role">Assistant Marketing Manager</p>
+        <p class="project-overview">Driving full-funnel marketing for a Dubai-based real estate intelligence platform — from performance campaigns to content strategy and automation.</p>
+        <div class="project-tags"><span class="project-tag">Performance Marketing</span><span class="project-tag">Meta Ads</span><span class="project-tag">Marketing Automation</span><span class="project-tag">SEO</span></div>
+      </div>
+
+      <div class="project-card" data-industry="Real Estate">
+        <div class="project-logo-wrap">
+          <img src="https://logo.clearbit.com/ratthagroups.com" alt="Rattha Groups" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="project-logo-placeholder" style="display:none">RG</div>
+        </div>
+        <p class="project-industry">Real Estate</p>
+        <h3 class="project-name">Rattha Groups</h3>
+        <p class="project-role">Performance Marketing Specialist</p>
+        <p class="project-overview">End-to-end performance marketing including paid search, paid social, SEO, and automation for a leading real estate developer.</p>
+        <div class="project-tags"><span class="project-tag">Google Ads</span><span class="project-tag">Meta Ads</span><span class="project-tag">SEO</span><span class="project-tag">Lead Generation</span></div>
+      </div>
+
+      <div class="project-card" data-industry="Real Estate">
+        <div class="project-logo-wrap">
+          <img src="https://logo.clearbit.com/workafella.com" alt="Workafella" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="project-logo-placeholder" style="display:none">WF</div>
+        </div>
+        <p class="project-industry">Real Estate · Coworking</p>
+        <h3 class="project-name">Workafella</h3>
+        <p class="project-role">Digital Marketing Manager</p>
+        <p class="project-overview">Led SEO and performance marketing for a premium coworking brand — managing full digital presence, paid campaigns, and lead pipeline.</p>
+        <div class="project-tags"><span class="project-tag">SEO</span><span class="project-tag">Budget Management</span><span class="project-tag">GA4 / GTM</span><span class="project-tag">LinkedIn Ads</span></div>
+      </div>
+
+      <div class="project-card" data-industry="FinTech">
+        <div class="project-logo-wrap">
+          <img src="https://logo.clearbit.com/fpmarkets.com" alt="FP Markets" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="project-logo-placeholder" style="display:none">FP</div>
+        </div>
+        <p class="project-industry">FinTech · Trading</p>
+        <h3 class="project-name">FP Markets</h3>
+        <p class="project-role">Performance Marketing Specialist</p>
+        <p class="project-overview">Performance marketing and growth strategy for a global forex and CFD brokerage — driving acquisition through paid media, email, and automation.</p>
+        <div class="project-tags"><span class="project-tag">Google Ads</span><span class="project-tag">LinkedIn Ads</span><span class="project-tag">GA4</span><span class="project-tag">Marketing Automation</span></div>
+      </div>
+
+      <div class="project-card" data-industry="SaaS">
+        <div class="project-logo-wrap">
+          <img src="https://logo.clearbit.com/countable.ca" alt="Countable" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="project-logo-placeholder" style="display:none">CT</div>
+        </div>
+        <p class="project-industry">SaaS</p>
+        <h3 class="project-name">Countable</h3>
+        <p class="project-role">Digital Marketing Manager</p>
+        <p class="project-overview">Built email marketing and outbound lead generation systems — driving pipeline through targeted outreach, automation, and segmentation strategy.</p>
+        <div class="project-tags"><span class="project-tag">Email Marketing</span><span class="project-tag">Marketing Automation</span><span class="project-tag">Lead Generation</span><span class="project-tag">WhatsApp Marketing</span></div>
+      </div>
+
+      <div class="project-card" data-industry="SaaS">
+        <div class="project-logo-wrap">
+          <img src="https://logo.clearbit.com/domaincer.com" alt="Domaincer" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="project-logo-placeholder" style="display:none">DC</div>
+        </div>
+        <p class="project-industry">SaaS · Marketing Agency</p>
+        <h3 class="project-name">Domaincer</h3>
+        <p class="project-role">Digital Marketing Analyst</p>
+        <p class="project-overview">Inbound and outreach marketing — driving organic and paid growth through SEO, Google Ads, Meta Ads, LinkedIn, and multi-channel automation.</p>
+        <div class="project-tags"><span class="project-tag">SEO</span><span class="project-tag">Google Ads</span><span class="project-tag">LinkedIn Ads</span><span class="project-tag">GA4</span></div>
+      </div>
+
+      <div class="project-card" data-industry="SaaS">
+        <div class="project-logo-wrap">
+          <img src="https://logo.clearbit.com/hyring.com" alt="Hyring" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="project-logo-placeholder" style="display:none">HY</div>
+        </div>
+        <p class="project-industry">SaaS · HR Tech</p>
+        <h3 class="project-name">Hyring.com</h3>
+        <p class="project-role">Performance Marketing Specialist</p>
+        <p class="project-overview">Performance marketing across Meta, Google, and LinkedIn — with SEO, email automation, and data-driven reporting to improve CAC and ROAS.</p>
+        <div class="project-tags"><span class="project-tag">Performance Marketing</span><span class="project-tag">Budget Management</span><span class="project-tag">Email Marketing</span><span class="project-tag">Social Media</span></div>
+      </div>
+
+      <div class="project-card" data-industry="Agency">
+        <div class="project-logo-wrap">
+          <img src="https://logo.clearbit.com/unicorndesignstudios.com" alt="Unicorn Design Studios" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="project-logo-placeholder" style="display:none">UD</div>
+        </div>
+        <p class="project-industry">Creative Agency</p>
+        <h3 class="project-name">Unicorn Design Studios</h3>
+        <p class="project-role">Digital Marketing Manager</p>
+        <p class="project-overview">360° digital marketing management — from paid search and social to SEO, email, automation, and cross-channel strategy for agency clients.</p>
+        <div class="project-tags"><span class="project-tag">360° Marketing</span><span class="project-tag">GA4 / GTM</span><span class="project-tag">LinkedIn Ads</span><span class="project-tag">Meta Ads</span></div>
+      </div>
+
+      <div class="project-card" data-industry="Healthcare">
+        <div class="project-logo-wrap"><div class="project-logo-placeholder">AH</div></div>
+        <p class="project-industry">Healthcare</p>
+        <h3 class="project-name">Amor Hospitals</h3>
+        <p class="project-role">Digital Marketing Analyst</p>
+        <p class="project-overview">Built digital presence for a healthcare brand through SEO, email marketing, and Meta Ads — improving patient acquisition and online visibility.</p>
+        <div class="project-tags"><span class="project-tag">SEO</span><span class="project-tag">Meta Ads</span><span class="project-tag">Email Marketing</span><span class="project-tag">Content Marketing</span></div>
+      </div>
+
+      <div class="project-card" data-industry="Healthcare">
+        <div class="project-logo-wrap"><div class="project-logo-placeholder">JF</div></div>
+        <p class="project-industry">Healthcare · Fertility</p>
+        <h3 class="project-name">Janya Fertility Clinic</h3>
+        <p class="project-role">Marketing Executive</p>
+        <p class="project-overview">SEO strategy and WhatsApp marketing to drive patient enquiries — focusing on high-intent keyword rankings and on-page optimisation.</p>
+        <div class="project-tags"><span class="project-tag">SEO Strategy</span><span class="project-tag">Keyword Research</span><span class="project-tag">Content Writing</span><span class="project-tag">WhatsApp Marketing</span></div>
+      </div>
+
+      <div class="project-card" data-industry="Education">
+        <div class="project-logo-wrap">
+          <img src="https://logo.clearbit.com/cadd.org" alt="CADD Centre" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="project-logo-placeholder" style="display:none">CC</div>
+        </div>
+        <p class="project-industry">Education · Technology</p>
+        <h3 class="project-name">CADD Centre</h3>
+        <p class="project-role">Digital Marketer</p>
+        <p class="project-overview">Campaign audit and performance optimisation — improved enrolment rates through GA4 analysis, GTM setup, and cross-channel campaign management.</p>
+        <div class="project-tags"><span class="project-tag">Campaign Audit</span><span class="project-tag">GA4</span><span class="project-tag">SEO</span><span class="project-tag">WhatsApp Marketing</span></div>
+      </div>
+
+      <div class="project-card" data-industry="Education">
+        <div class="project-logo-wrap">
+          <img src="https://logo.clearbit.com/dreamzone.co.in" alt="Dreamzone" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="project-logo-placeholder" style="display:none">DZ</div>
+        </div>
+        <p class="project-industry">Education</p>
+        <h3 class="project-name">Dreamzone</h3>
+        <p class="project-role">Digital Marketer · Performance Specialist</p>
+        <p class="project-overview">Performance-led marketing for a creative education institute — integrating SEO, Google Ads, email, and automation for enrolment growth.</p>
+        <div class="project-tags"><span class="project-tag">Google Ads</span><span class="project-tag">Marketing Automation</span><span class="project-tag">SEO</span><span class="project-tag">Lead Generation</span></div>
+      </div>
+
+      <div class="project-card" data-industry="Education">
+        <div class="project-logo-wrap">
+          <img src="https://logo.clearbit.com/livewire.in" alt="Livewire" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="project-logo-placeholder" style="display:none">LW</div>
+        </div>
+        <p class="project-industry">Education · Tech Training</p>
+        <h3 class="project-name">Livewire</h3>
+        <p class="project-role">Digital Marketer</p>
+        <p class="project-overview">Digital marketing strategy for a tech education brand — combining SEO, Meta Ads, email, and automation to generate and nurture student leads.</p>
+        <div class="project-tags"><span class="project-tag">Digital Strategy</span><span class="project-tag">Meta Ads</span><span class="project-tag">SEO</span><span class="project-tag">Email Marketing</span></div>
+      </div>
+
+      <div class="project-card" data-industry="Education">
+        <div class="project-logo-wrap"><div class="project-logo-placeholder">RW</div></div>
+        <p class="project-industry">Education</p>
+        <h3 class="project-name">Rockwoods School</h3>
+        <p class="project-role">Marketing Executive</p>
+        <p class="project-overview">Social media marketing and SEO to improve school visibility — building organic presence and parent engagement through targeted content.</p>
+        <div class="project-tags"><span class="project-tag">Meta Ads</span><span class="project-tag">SEO</span><span class="project-tag">Social Media</span><span class="project-tag">Content Marketing</span></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- TOOLS -->
+<section class="section tools-section" id="tools">
+  <div class="section-inner">
+    <div class="section-header">
+      <p class="section-label">Tech stack</p>
+      <h2 class="section-title">Tools I use<br><em>to get results.</em></h2>
+    </div>
+    <div class="tools-categories">
+
+      <div class="fade-in">
+        <p class="tool-category-label">🤖 AI & Writing Tools</p>
+        <div class="tools-pill-row">
+          <span class="tool-pill ai-pill"><span class="tp-icon">🤖</span>ChatGPT</span>
+          <span class="tool-pill ai-pill"><span class="tp-icon">🤖</span>Claude</span>
+          <span class="tool-pill ai-pill"><span class="tp-icon">✍️</span>Jasper</span>
+          <span class="tool-pill ai-pill"><span class="tp-icon">✍️</span>Copy.ai</span>
+          <span class="tool-pill ai-pill"><span class="tp-icon">✍️</span>Writesonic</span>
+          <span class="tool-pill ai-pill"><span class="tp-icon">🎨</span>Canva AI</span>
+          <span class="tool-pill ai-pill"><span class="tp-icon">🔍</span>Perplexity</span>
+          <span class="tool-pill"><span class="tp-icon">📝</span>Grammarly</span>
+          <span class="tool-pill"><span class="tp-icon">🔄</span>Quillbot</span>
+          <span class="tool-pill"><span class="tp-icon">✏️</span>Wordtune</span>
+          <span class="tool-pill"><span class="tp-icon">🛡️</span>Copyscape</span>
+        </div>
+      </div>
+
+      <div class="fade-in fade-delay-1">
+        <p class="tool-category-label">🔍 SEO & Keyword Research</p>
+        <div class="tools-pill-row">
+          <span class="tool-pill"><span class="tp-icon">📊</span>SEMrush</span>
+          <span class="tool-pill"><span class="tp-icon">🔗</span>Ahrefs</span>
+          <span class="tool-pill"><span class="tp-icon">📈</span>Ubersuggest</span>
+          <span class="tool-pill"><span class="tp-icon">🏔️</span>Moz</span>
+          <span class="tool-pill"><span class="tp-icon">🔑</span>Google Keyword Planner</span>
+          <span class="tool-pill"><span class="tp-icon">🌊</span>Surfer SEO</span>
+        </div>
+      </div>
+
+      <div class="fade-in fade-delay-2">
+        <p class="tool-category-label">📱 Social Media Management</p>
+        <div class="tools-pill-row">
+          <span class="tool-pill"><span class="tp-icon">🦉</span>Hootsuite</span>
+          <span class="tool-pill"><span class="tp-icon">📦</span>Buffer</span>
+          <span class="tool-pill"><span class="tp-icon">🟠</span>Zoho Social</span>
+          <span class="tool-pill"><span class="tp-icon">✈️</span>SocialPilot</span>
+          <span class="tool-pill"><span class="tp-icon">🌱</span>Sprout Social</span>
+          <span class="tool-pill"><span class="tp-icon">🟧</span>HubSpot</span>
+        </div>
+      </div>
+
+      <div class="fade-in fade-delay-3">
+        <p class="tool-category-label">📧 Email & Outreach</p>
+        <div class="tools-pill-row">
+          <span class="tool-pill"><span class="tp-icon">🐒</span>Mailchimp</span>
+          <span class="tool-pill"><span class="tp-icon">🟠</span>Zoho Email Marketing</span>
+          <span class="tool-pill"><span class="tp-icon">💬</span>Respond.io</span>
+          <span class="tool-pill"><span class="tp-icon">↩️</span>Reply.io</span>
+          <span class="tool-pill"><span class="tp-icon">🚀</span>Apollo.io</span>
+        </div>
+      </div>
+
+      <div class="fade-in">
+        <p class="tool-category-label">⚙️ Automation & Integration</p>
+        <div class="tools-pill-row">
+          <span class="tool-pill"><span class="tp-icon">⚡</span>Zapier</span>
+          <span class="tool-pill"><span class="tp-icon">🔧</span>n8n</span>
+        </div>
+      </div>
+
+      <div class="fade-in fade-delay-1">
+        <p class="tool-category-label">📊 Analytics & Tracking</p>
+        <div class="tools-pill-row">
+          <span class="tool-pill"><span class="tp-icon">📊</span>Google Analytics (GA4)</span>
+          <span class="tool-pill"><span class="tp-icon">🔍</span>Google Search Console</span>
+          <span class="tool-pill"><span class="tp-icon">🏷️</span>Google Tag Manager</span>
+          <span class="tool-pill"><span class="tp-icon">👁️</span>Microsoft Clarity</span>
+          <span class="tool-pill"><span class="tp-icon">📱</span>Social Media Insights</span>
+        </div>
+      </div>
+
+      <div class="fade-in fade-delay-2">
+        <p class="tool-category-label">🗂️ CRM & Sales Intelligence</p>
+        <div class="tools-pill-row">
+          <span class="tool-pill"><span class="tp-icon">☁️</span>Salesforce</span>
+          <span class="tool-pill"><span class="tp-icon">🟧</span>HubSpot CRM</span>
+          <span class="tool-pill"><span class="tp-icon">🟠</span>Zoho CRM</span>
+          <span class="tool-pill"><span class="tp-icon">🔭</span>ZoomInfo</span>
+          <span class="tool-pill"><span class="tp-icon">🚀</span>Apollo.io</span>
+        </div>
+      </div>
+
+      <div class="fade-in fade-delay-3">
+        <p class="tool-category-label">🗃️ Project Management & Collaboration</p>
+        <div class="tools-pill-row">
+          <span class="tool-pill"><span class="tp-icon">📌</span>Trello</span>
+          <span class="tool-pill"><span class="tp-icon">📓</span>Notion</span>
+          <span class="tool-pill"><span class="tp-icon">✅</span>ClickUp</span>
+          <span class="tool-pill"><span class="tp-icon">📋</span>Monday.com</span>
+          <span class="tool-pill"><span class="tp-icon">💬</span>Slack</span>
+          <span class="tool-pill"><span class="tp-icon">🟦</span>Microsoft Teams</span>
+          <span class="tool-pill"><span class="tp-icon">🎨</span>Canva</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact-section" id="contact">
+  <div class="contact-inner">
+    <div class="contact-left">
+      <p class="section-label" style="color:var(--gold-glow)">
+        <span style="display:inline-block;width:32px;height:1px;background:var(--gold-glow);margin-right:12px;vertical-align:middle"></span>
+        Let's talk
+      </p>
+      <h2 class="section-title" style="color:var(--white)">Open to the right<br><em style="color:var(--gold-glow)">opportunity.</em></h2>
+      <p class="contact-tagline">Whether you're looking for a performance marketer, a growth strategist, or someone who can bridge data and creativity — I'd love to hear what you're building.</p>
+      <div class="contact-links">
+        <a href="https://www.linkedin.com/in/chandrikaselvamani/" target="_blank" class="contact-link">
+          <div class="contact-link-icon">in</div>
+          <span>linkedin.com/in/chandrikaselvamani</span>
+        </a>
+        <a href="https://www.facebook.com/people/Chandrika-Selvamani/pfbid02JC6nkRQBMeMtQTgGkfYNNrWmAnej5H1rC7AadKfkLzzDjRAq26EzytggaGFKkykal/" target="_blank" class="contact-link">
+          <div class="contact-link-icon">f</div>
+          <span>Chandrika Selvamani on Facebook</span>
+        </a>
+      </div>
+    </div>
+    <div class="contact-right">
+      <div style="background:rgba(247,244,239,0.05);border:0.5px solid rgba(200,184,154,0.2);padding:48px 40px;">
+        <p style="font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:300;color:var(--white);line-height:1.45;margin-bottom:32px;">
+          "8 years of turning <em style="color:var(--gold-glow)">data into decisions</em> and campaigns into growth."
+        </p>
+        <div style="display:flex;flex-direction:column;gap:16px;">
+          <div style="display:flex;gap:16px;align-items:center;">
+            <div style="width:3px;height:36px;background:var(--gold);flex-shrink:0"></div>
+            <p style="font-size:13px;color:rgba(247,244,239,0.6);line-height:1.6">Available for full-time roles, consulting engagements, and advisory projects in digital marketing &amp; growth strategy.</p>
+          </div>
+          <div style="display:flex;gap:16px;align-items:center;">
+            <div style="width:3px;height:36px;background:var(--sand);flex-shrink:0"></div>
+            <p style="font-size:13px;color:rgba(247,244,239,0.6);line-height:1.6">Industries: Real Estate, SaaS, FinTech, Healthcare, Education, Agency.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span class="footer-name">Chandrika S.</span>
+  <span class="footer-copy">© 2025 · Digital Marketing Strategist · Dubai</span>
+</footer>
+
+<script>
+  const cursor = document.getElementById('cursor');
+  document.addEventListener('mousemove', e => {
+    cursor.style.left = e.clientX + 'px';
+    cursor.style.top = e.clientY + 'px';
+  });
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) entry.target.classList.add('visible');
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+  document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', function() {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      this.classList.add('active');
+      const filter = this.dataset.filter;
+      document.querySelectorAll('.project-card').forEach(card => {
+        if (filter === 'all' || card.dataset.industry === filter) {
+          card.classList.remove('hidden');
+        } else {
+          card.classList.add('hidden');
+        }
+      });
+    });
+  });
+</script>
+</body>
+</html>
